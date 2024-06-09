@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import { FidgetSpinner, RotatingLines } from "react-loader-spinner";
@@ -50,9 +50,7 @@ const Registration = () => {
         role: data.role,
       };
 
-      await axiosPublic.post("/users", userInfo).then((res) => {
-        console.log(res.data);
-      });
+      await axiosPublic.post("/users", userInfo);
 
       toast.success("Success! You've signed up and are ready to go!");
     } catch (error) {
@@ -186,7 +184,6 @@ const Registration = () => {
               >
                 <option defaultValue="Student">Student</option>
                 <option value="Tutor">Tutor</option>
-                <option value="Admin">Admin</option>
               </select>
               {errors.role && <p role="alert">{errors.role.message}</p>}
             </div>
@@ -256,6 +253,7 @@ const Registration = () => {
           </Button>
         </div>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

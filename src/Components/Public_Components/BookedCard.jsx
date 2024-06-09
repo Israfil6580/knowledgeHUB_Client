@@ -1,7 +1,8 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
-const BookedCard = () => {
+const BookedCard = ({ bookings }) => {
   return (
     <div className="w-auto bg-white border relative pt-14 pb-6 px-10 rounded-2xl">
       <div className="absolute -top-10">
@@ -13,7 +14,7 @@ const BookedCard = () => {
       </div>
       <div className="flex flex-col gap-2">
         <h2 className="font-black tracking-wide font-title text-xl">
-          App Developement
+          {bookings.sessionTitle}
         </h2>
         <div className="flex flex-col gap-1">
           <p className="flex gap-2 text-gray-700 items-center">
@@ -29,7 +30,7 @@ const BookedCard = () => {
                 clipRule="evenodd"
               />
             </svg>
-            Internal Communication
+            {bookings.SessionType}
           </p>
           <p className="flex gap-2 text-gray-700 items-center">
             <svg
@@ -46,11 +47,11 @@ const BookedCard = () => {
                 d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
               />
             </svg>
-            1 weaks left
+            {bookings.RegStartDate.split("T")[0]}
           </p>
         </div>
         <hr />
-        <Link to={"/bal"}>
+        <Link to={`/session/${bookings.sessionId}`}>
           <Button className="font-normal text-[15px] capitalize w-full">
             View Details
           </Button>

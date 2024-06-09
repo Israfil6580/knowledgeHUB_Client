@@ -1,5 +1,5 @@
 import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { Link, ScrollRestoration } from "react-router-dom";
 import logo from "/fav.svg";
 import useAuth from "../Hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -128,12 +128,9 @@ const Login = () => {
                 <label htmlFor="password" className="text-sm">
                   Password
                 </label>
-                <button
-  type="button"
-  className="text-xs hover:underline"
->
-  Forgot password?
-</button>
+                <button type="button" className="text-xs hover:underline">
+                  Forgot password?
+                </button>
               </div>
               <input
                 type="password"
@@ -172,6 +169,7 @@ const Login = () => {
           </div>
         </form>
       </div>
+      <ScrollRestoration />
     </div>
   );
 };

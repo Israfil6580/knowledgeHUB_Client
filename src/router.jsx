@@ -16,6 +16,9 @@ import ViewAllMaterials from "./Components/Dashboard_Components/ViewAllMaterials
 import ViewAllUsers from "./Components/Dashboard_Components/ViewAllUsers";
 import PrivateRoute from "./Routes/PrivateRoutes";
 import AdminRoute from "./Routes/AdminRoutes";
+import SessionDetails from "./Components/Homepage_Components/SessionDetails";
+import ViewAllSession from "./Components/Homepage_Components/ViewAllSession";
+import All_Tutors from "./Components/Homepage_Components/AllTutor";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +36,19 @@ export const router = createBrowserRouter([
       {
         path: "registration",
         element: <Registration />,
+      },
+      {
+        path: "session/:id",
+        element: (
+          <PrivateRoute>
+            <SessionDetails />
+          </PrivateRoute>
+        ),
+      },
+      { path: "allTutor", element: <All_Tutors /> },
+      {
+        path: "all_Study_Session",
+        element: <ViewAllSession />,
       },
     ],
   },

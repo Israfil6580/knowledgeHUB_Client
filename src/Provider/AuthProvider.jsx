@@ -57,7 +57,7 @@ const AuthProvider = ({ children }) => {
         photoURL: result?.user?.photoURL,
         role: "Student",
       };
-      axiosPublic.post("/users", userInfo).then((res) => console.log(res.data));
+      axiosPublic.post("/users", userInfo);
       setLoading(false);
       toast.success("You've successfully logged in with your Google account.");
     } catch (error) {

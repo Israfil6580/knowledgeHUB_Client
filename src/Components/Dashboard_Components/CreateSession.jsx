@@ -120,7 +120,7 @@ const CreateSession = () => {
               name="sessionDescription"
               id="sessionDescription"
               placeholder="Session Description"
-              rows={"11"}
+              rows={"14"}
               className="w-[95%] px-3 py-2 border rounded-md text-gray-700 transition-transform border-gray-400 outline-none"
               {...register("sessionDescription", { required: true })}
             />
@@ -152,7 +152,7 @@ const CreateSession = () => {
               Tutor email
             </label>
             <input
-              type="text"
+              type="email"
               name="TutorEmail"
               id="TutorEmail"
               placeholder="Tutor email"
@@ -160,6 +160,19 @@ const CreateSession = () => {
               readOnly
               className="w-full px-3 py-2 border rounded-md text-gray-700 transition-transform border-gray-400 outline-none"
               {...register("TutorEmail", { required: true })}
+            />
+          </div>
+          <div className="pb-2">
+            <label htmlFor="TutorName" className="block text-[15px]">
+              Tutor Name
+            </label>
+            <input
+              type="text"
+              name="TutorName"
+              id="TutorName"
+              placeholder="Tutor Name"
+              className="w-full px-3 py-2 border rounded-md text-gray-700 transition-transform border-gray-400 outline-none"
+              {...register("TutorName", { required: true })}
             />
           </div>
           <div className="pb-2">

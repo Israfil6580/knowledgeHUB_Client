@@ -1,15 +1,13 @@
 import { useQuery } from "@tanstack/react-query";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Heading from "../Public_Components/Heading";
 import { CardDefault } from "../Public_Components/Card";
 import Container from "../Public_Components/Container";
-import Heading from "../Public_Components/Heading";
-import { Button } from "@material-tailwind/react";
-import { Link } from "react-router-dom";
+import { ScrollRestoration } from "react-router-dom";
 
-const Study_Session = () => {
+const ViewAllSession = () => {
   const axiosPublic = useAxiosPublic();
-
-  const { data: StudySession = [], error } = useQuery({
+  const { data: StudySession = [], refetch } = useQuery({
     queryKey: ["StudySession"],
     queryFn: async () => {
       try {
@@ -22,34 +20,26 @@ const Study_Session = () => {
     },
   });
 
-  if (error) {
-    return <div>Error: {error.message}</div>;
+  if (StudySession.length > 0) {
+    refetch();
   }
-
   return (
     <Container>
       <div>
         <Heading
-          title="Study session"
+          title="All Study session"
           subTitle="Dive into interactive discussions, practical exercises, and gain insights on how to thrive in a virtual learning environment."
         />
 
         <div className="grid lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-5">
-          {StudySession.slice(0, 6).map((item, index) => (
+          {StudySession.map((item, index) => (
             <CardDefault key={index} item={item} />
           ))}
         </div>
-
-        <div className="text-center">
-          <Link to="/all_Study_Session">
-            <Button className="font-normal text-base mt-8 capitalize">
-              See all sessions
-            </Button>
-          </Link>
-        </div>
       </div>
+      <ScrollRestoration />
     </Container>
   );
 };
 
-export default Study_Session;
+export default ViewAllSession;
