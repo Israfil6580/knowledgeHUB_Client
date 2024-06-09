@@ -156,7 +156,6 @@ const UploadCard = ({ ApprovedSession }) => {
                     <h1 className="font-title text-3xl font-black text-gray-900">
                       Upload Materials
                     </h1>
-                    <p className="text-sm">It can take saveral times</p>
                   </div>
                   <div className="grid gap-6">
                     <Input
@@ -171,6 +170,13 @@ const UploadCard = ({ ApprovedSession }) => {
                       type="text"
                       defaultValue={item._id}
                       label="Session Id"
+                      readOnly
+                    />
+                    <Input
+                      {...register("SessionTitle", { required: true })}
+                      type="text"
+                      label="Session Title"
+                      defaultValue={item.sessionTitle}
                       readOnly
                     />
                     <Input
