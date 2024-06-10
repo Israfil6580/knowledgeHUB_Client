@@ -1,8 +1,8 @@
 Knowledge HUB
-Welcome to Knowledge HUB, a modern educational platform offering a wealth of resources and insights. Visit the website here.
+Welcome to Knowledge HUB, a modern educational platform offering a wealth of resources and insights. Explore a variety of tutorials, articles, and interactive content designed to enhance your learning experience.
 
 Website URL
-https://euphonious-centaur-a9c57b.netlify.app/
+Knowledge HUB
 
 Features
 - Clean and Modern Design: Visually appealing layout with intuitive navigation.
