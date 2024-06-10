@@ -5,7 +5,7 @@ import { Button } from "@material-tailwind/react";
 const Banner = () => {
   return (
     <Container>
-      <div className="lg:flex items-center min-h-screen">
+      <div className="lg:flex items-center lg:pt-0 pt-28 lg:min-h-screen">
         <div className="lg:w-1/2 flex flex-col gap-6">
           <h1 className="text-5xl uppercase leading-tight font-title font-black relative tracking-wide">
             Transform your

@@ -29,7 +29,7 @@ const BookedSession = () => {
         <h1 className="text-3xl font-black font-title">Booked Session</h1>
         <p className="text-sm">All session you booked</p>
       </div>
-      <div className="grid grid-cols-3 gap-x-2 gap-y-16 mt-16">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-x-2 gap-y-16 mt-16">
         {myBookings.map((bookings) => (
           <BookedCard key={bookings._id} bookings={bookings} />
         ))}

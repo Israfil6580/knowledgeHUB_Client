@@ -105,11 +105,13 @@ const AllMySession = () => {
   return (
     <div className="bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] rounded-2xl min-h-[calc(100vh-150px)] mt-2 p-6">
       <div>
-        <h1 className="text-3xl font-black font-title">My Added Session</h1>
+        <h1 className="text-3xl font-black font-title pb-4">
+          My Added Session
+        </h1>
       </div>
       <Tabs value={activeTab}>
         <TabsHeader
-          className="rounded-none w-1/2 mx-auto border-b border-blue-gray-50 bg-transparent p-0"
+          className="rounded-none lg:w-1/2 mx-auto border-b border-blue-gray-50 bg-transparent p-0"
           indicatorProps={{
             className:
               "bg-transparent border-b-2 border-gray-900 shadow-none rounded-none",
@@ -129,7 +131,7 @@ const AllMySession = () => {
         <TabsBody>
           {data.map(({ value, desc }) => (
             <TabPanel
-              className="grid grid-cols-2 gap-4"
+              className="grid lg:grid-cols-2 grid-cols-1 gap-4 p-0"
               key={value}
               value={value}
             >

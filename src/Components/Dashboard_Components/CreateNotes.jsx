@@ -119,7 +119,7 @@ const CreateNotes = () => {
           </form>
         </Dialog>
       </div>
-      <div className="grid grid-cols-3 gap-3 pt-6">
+      <div className="grid lg:grid-cols-3 grid-cols-1 gap-3 pt-6">
         {notes.map((notes) => (
           <NoteCard
             key={notes._id}

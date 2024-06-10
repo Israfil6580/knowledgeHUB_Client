@@ -40,10 +40,10 @@ const Dashboard = () => {
           />
         </div>
       ) : (
-        <div className="min-h-screen p-4">
-          <div className="flex h-[calc(100vh-2rem)] gap-4">
+        <div className="min-h-screen p-4 overflow-hidden">
+          <div className="flex flex-col lg:flex-row h-[calc(100vh-2rem)] gap-4 overflow-x-auto">
             {/* Sidebar */}
-            <div className="w-1/6 bg-gradient-to-r from-[#e2ffe4] to-[#E8F5E9] shadow-lg rounded-2xl">
+            <div className="lg:w-1/6 p-10 lg:p-0 bg-gradient-to-r from-[#e2ffe4] to-[#E8F5E9] shadow-lg rounded-2xl">
               <div className="flex flex-col gap-4 m-3">
                 <h1 className="text-2xl font-title font-black uppercase">
                   Dashboard
@@ -139,7 +139,7 @@ const Dashboard = () => {
             </div>
 
             {/* Main content */}
-            <div className="w-5/6 shadow-lg rounded-3xl bg-green-50 px-5 py-6">
+            <div className="lg:w-5/6 shadow-lg rounded-3xl bg-green-50 px-5 py-6">
               <div className="flex justify-between items-start gap-2">
                 <div className="leading-4">
                   <h1 className="text-4xl font-black font-title tracking-wide">

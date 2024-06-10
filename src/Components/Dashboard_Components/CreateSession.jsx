@@ -43,9 +43,12 @@ const CreateSession = () => {
         <h1 className="text-3xl font-black font-title">Create Session</h1>
         <p className="text-sm">Create session for students</p>
       </div>
-      <form onSubmit={handleSubmit(onSubmit)} className="flex mt-5 gap-4">
-        <div className="w-1/2 flex  flex-col gap-5">
-          <div className="flex gap-2">
+      <form
+        onSubmit={handleSubmit(onSubmit)}
+        className="flex lg:flex-row flex-col-reverse  mt-5 gap-4"
+      >
+        <div className="lg:w-1/2 w-full lg:flex flex-col gap-5">
+          <div className="lg:flex gap-2">
             <div>
               <label htmlFor="reg-start-date" className="block text-[15px]">
                 Registration start date
@@ -77,7 +80,7 @@ const CreateSession = () => {
               />
             </div>
           </div>
-          <div className="flex gap-2">
+          <div className="lg:flex gap-2">
             <div>
               <label htmlFor="start-date" className="block text-[15px]">
                 Class start date
@@ -121,7 +124,7 @@ const CreateSession = () => {
               id="sessionDescription"
               placeholder="Session Description"
               rows={"14"}
-              className="w-[95%] px-3 py-2 border rounded-md text-gray-700 transition-transform border-gray-400 outline-none"
+              className="lg:w-[95%] w-full px-3 py-2 border rounded-md text-gray-700 transition-transform border-gray-400 outline-none"
               {...register("sessionDescription", { required: true })}
             />
           </div>
@@ -132,7 +135,7 @@ const CreateSession = () => {
             </Button>
           </div>
         </div>
-        <div className="w-1/2 flex flex-col gap-2">
+        <div className="lg:w-1/2 w-full flex flex-col gap-2">
           <div className="pb-2">
             <label htmlFor="sessionTitle" className="block text-[15px]">
               Session Title

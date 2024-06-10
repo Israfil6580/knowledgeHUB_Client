@@ -4,7 +4,7 @@ import Container from "../Public_Components/Container";
 const Become_Tutor = () => {
   return (
     <Container>
-      <div className="lg:flex mt-20 gap-28 items-center">
+      <div className="flex lg:flex-row flex-col-reverse mt-20 gap-28 items-center">
         <div className="lg:w-7/12">
           <div className="mb-6">
             <h1 className="text-5xl font-title font-black pb-2 tracking-wide">

@@ -98,7 +98,7 @@ const UploadCard = ({ ApprovedSession }) => {
   };
 
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="grid lg:grid-cols-3 grid-cols-1 gap-4">
       {ApprovedSession.map((item, index) => (
         <div
           key={item._id}

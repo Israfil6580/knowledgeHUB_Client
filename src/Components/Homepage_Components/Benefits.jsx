@@ -7,7 +7,7 @@ import img4 from "/icon/Group4.png";
 const Benefits = () => {
   return (
     <Container>
-      <div className="flex lg:flex-row flex-col-reverse mt-10 lg:gap-12 gap-6">
+      <div className="flex lg:flex-row flex-col-reverse lg:mt-10 mt-20 lg:gap-12 gap-20">
         <div className="lg:w-1/2">
           <img className="lg:p-12" src={benefits_image} alt="" />
         </div>

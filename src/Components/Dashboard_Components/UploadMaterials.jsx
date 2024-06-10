@@ -24,11 +24,11 @@ const UploadMaterials = () => {
   return (
     <div className="bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] rounded-2xl min-h-[calc(100vh-150px)] mt-2 p-6">
       <div className="mb-10">
-        <h1 className="text-3xl font-black font-title">
-          Upload resources or materials
+        <h1 className="text-3xl font-black font-title pb-4">
+          Upload materials
         </h1>
         <p className="text-sm">
-          You can only upload resources for approved session by Admin
+          Only upload resources for approved session by Admin
         </p>
       </div>
       <div>

@@ -26,7 +26,7 @@ const ManageNotes = () => {
           <h1 className="text-3xl font-black font-title">Manage Notes</h1>
           <p className="text-sm">Manage or edit your notes</p>
         </div>
-        <div className="grid grid-cols-3 gap-3">
+        <div className="grid lg:grid-cols-2 grid-cols-1 lg:gap-3">
           {notes.map((item) => (
             <EditableNoteCard
               key={item._id}

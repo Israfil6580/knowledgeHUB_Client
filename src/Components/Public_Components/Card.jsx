@@ -12,7 +12,7 @@ export function CardDefault({ item }) {
   const isRegistrationOver = new Date(item.RegEndDate) < new Date();
 
   return (
-    <Card className="mt-6 w-96">
+    <Card className="mt-6 w-auto">
       <CardBody>
         <Typography
           variant="h5"
