@@ -1,6 +1,6 @@
 import axios from "axios";
 import { Button } from "@material-tailwind/react";
-import { Link, ScrollRestoration } from "react-router-dom";
+import { Link, ScrollRestoration, useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import useAuth from "../Hooks/useAuth";
 import { FidgetSpinner, RotatingLines } from "react-loader-spinner";
@@ -13,12 +13,22 @@ const Registration = () => {
   const image_hosting_api = `https://api.imgbb.com/1/upload?key=${image_hosting_key}`;
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { googleSignIn, githubSignIn } = useAuth();
+  const navigate = useNavigate();
   const axiosPublic = useAxiosPublic();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
+
+  const googleSubmit = async () => {
+    await googleSignIn();
+    return navigate(location.state || "/", { replace: true });
+  };
+  const githubSubmit = async () => {
+    await githubSignIn();
+    return navigate(location.state || "/", { replace: true });
+  };
 
   const onSubmit = async (data) => {
     setIsSubmitting(true);
@@ -51,8 +61,8 @@ const Registration = () => {
       };
 
       await axiosPublic.post("/users", userInfo);
-
       toast.success("Success! You've signed up and are ready to go!");
+      return navigate(location.state || "/", { replace: true });
     } catch (error) {
       toast.error(error.message);
     } finally {
@@ -222,7 +232,7 @@ const Registration = () => {
           <Button
             aria-label="Google"
             className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md hover:bg-gray-900 transition-transform border-gray-400 hover:text-gray-300"
-            onClick={googleSignIn}
+            onClick={googleSubmit}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -238,7 +248,7 @@ const Registration = () => {
           <Button
             aria-label="GitHub"
             className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md hover:bg-gray-900 transition-transform border-gray-400 hover:text-gray-300"
-            onClick={githubSignIn}
+            onClick={githubSubmit}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

@@ -19,6 +19,8 @@ import AdminRoute from "./Routes/AdminRoutes";
 import SessionDetails from "./Components/Homepage_Components/SessionDetails";
 import ViewAllSession from "./Components/Homepage_Components/ViewAllSession";
 import All_Tutors from "./Components/Homepage_Components/AllTutor";
+import AllStudySession from "./Components/Dashboard_Components/AllStudySession";
+import AllMaterials from "./Components/Dashboard_Components/AllMaterials";
 
 export const router = createBrowserRouter([
   {
@@ -62,45 +64,97 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "bookedsession",
-        element: <BookedSession />,
+        element: (
+          <PrivateRoute>
+            <BookedSession />
+          </PrivateRoute>
+        ),
       },
       {
         path: "createnotes",
-        element: <CreateNotes />,
+        element: (
+          <PrivateRoute>
+            <CreateNotes />
+          </PrivateRoute>
+        ),
       },
       {
         path: "managenotes",
-        element: <ManageNotes />,
+        element: (
+          <PrivateRoute>
+            <ManageNotes />
+          </PrivateRoute>
+        ),
       },
       {
         path: "studymaterials",
-        element: <StudyMaterials />,
+        element: (
+          <PrivateRoute>
+            <StudyMaterials />
+          </PrivateRoute>
+        ),
       },
       {
-        path: "seematerials",
-        element: <SeeMaterials />,
+        path: "seematerials/:sessionId",
+        element: (
+          <PrivateRoute>
+            <SeeMaterials />
+          </PrivateRoute>
+        ),
       },
       {
         path: "createsession",
-        element: <CreateSession />,
+        element: (
+          <PrivateRoute>
+            <CreateSession />
+          </PrivateRoute>
+        ),
       },
       {
         path: "myallsession",
-        element: <AllMySession />,
+        element: (
+          <PrivateRoute>
+            <AllMySession />
+          </PrivateRoute>
+        ),
       },
       {
         path: "uploadmaterials",
-        element: <UploadMaterials />,
+        element: (
+          <PrivateRoute>
+            <UploadMaterials />
+          </PrivateRoute>
+        ),
       },
       {
         path: "allmaterials",
-        element: <ViewAllMaterials />,
+        element: (
+          <PrivateRoute>
+            <ViewAllMaterials />
+          </PrivateRoute>
+        ),
       },
       {
         path: "viewallusers",
         element: (
           <AdminRoute>
             <ViewAllUsers />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "viewallSession",
+        element: (
+          <AdminRoute>
+            <AllStudySession />
+          </AdminRoute>
+        ),
+      },
+      {
+        path: "viewallMaterials",
+        element: (
+          <AdminRoute>
+            <AllMaterials />
           </AdminRoute>
         ),
       },

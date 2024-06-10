@@ -36,11 +36,6 @@ const All_Tutors = () => {
             <ProfileCard key={item._id} item={item} />
           ))}
         </div>
-        <div className="text-center">
-          <Button className="font-normal text-base mt-8 capitalize">
-            See all tutors
-          </Button>
-        </div>
       </div>
       <ScrollRestoration />
     </Container>

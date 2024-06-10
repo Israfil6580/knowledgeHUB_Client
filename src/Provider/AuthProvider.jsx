@@ -47,7 +47,6 @@ const AuthProvider = ({ children }) => {
       throw error;
     }
   };
-
   const googleSignIn = async () => {
     try {
       const result = await signInWithPopup(auth, GoogleProvider);
@@ -57,13 +56,17 @@ const AuthProvider = ({ children }) => {
         photoURL: result?.user?.photoURL,
         role: "Student",
       };
+
+      // Perform POST request to create user
       axiosPublic.post("/users", userInfo);
-      setLoading(false);
+
+      // Check if the request was successful
       toast.success("You've successfully logged in with your Google account.");
+      setLoading(false);
     } catch (error) {
+      // Handle error
       setLoading(false);
       toast.error(error.message);
-      throw error;
     }
   };
 

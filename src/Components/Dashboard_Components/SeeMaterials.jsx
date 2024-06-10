@@ -1,8 +1,57 @@
-import { Link } from "react-router-dom";
 import { DialogWithImage } from "../Public_Components/DialogWithImage";
 import { Button } from "@material-tailwind/react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
+import { useParams } from "react-router-dom";
+import { RotatingLines } from "react-loader-spinner";
 
 const SeeMaterials = () => {
+  const { sessionId } = useParams();
+  const axiosSecure = useAxiosSecure();
+
+  const {
+    data: materials = [],
+    refetch,
+    isLoading,
+    isError,
+  } = useQuery({
+    queryKey: ["materials", sessionId],
+    queryFn: async () => {
+      try {
+        const res = await axiosSecure.get(`/seeMaterials/${sessionId}`);
+        refetch();
+        return res.data;
+      } catch (error) {
+        console.error("Error fetching materials:", error);
+        throw new Error("Failed to fetch materials");
+      }
+    },
+  });
+  if (isLoading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
+        <RotatingLines
+          visible={true}
+          height="96"
+          width="96"
+          color="grey"
+          strokeWidth="5"
+          animationDuration="0.75"
+          ariaLabel="rotating-lines-loading"
+          wrapperStyle={{}}
+          wrapperClass=""
+        />
+      </div>
+    );
+  }
+
+  if (isError) {
+    return <div>Error fetching materials.</div>;
+  }
+  const sessionTitle =
+    materials.length > 0 ? materials[0].SessionTitle : "No Title";
+  const TutorEmail =
+    materials.length > 0 ? materials[0].TutorEmail : "No email";
   return (
     <div className="bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] rounded-2xl min-h-[calc(100vh-150px)] mt-2 p-6">
       <div>
@@ -12,60 +61,40 @@ const SeeMaterials = () => {
             <p className="text-sm">All resources from this session</p>
           </div>
           <div className="flex flex-col items-end">
-            <h1 className="font-title font-black text-xl">Web Development</h1>
-            <p className="text-[15px]">
-              By <span>Ramesh Fuk</span>
-            </p>
+            <h1 className="font-title font-black text-xl">{sessionTitle}</h1>
+            <h1 className="text-sm">{TutorEmail}</h1>
           </div>
         </div>
-        <div className="mb-10">
-          <h1 className="font-black font-title text-2xl mb-4">Images</h1>
-          <div className="grid grid-cols-3 gap-4">
-            <DialogWithImage />
-            <DialogWithImage />
-            <DialogWithImage />
-            <DialogWithImage />
-            <DialogWithImage />
-            <DialogWithImage />
+        {materials.map((item, index) => (
+          <div key={index}>
+            <div className="mb-10">
+              <h1 className="font-black font-title text-2xl mb-4">
+                {item.MaterialTitle}
+              </h1>
+              <div className="grid grid-cols-3 gap-4">
+                {item.PhotoURLs.map((item, index) => (
+                  <DialogWithImage key={index} item={item} />
+                ))}
+              </div>
+            </div>
+            <div>
+              <div className="flex gap-3 pb-10">
+                {item.GoogleDriveLinks.map((item, index) => (
+                  <a
+                    key={index}
+                    href={item}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <Button className="bg-green-400 text-[15px] font-normal capitalize">
+                      Important Link {index + 1}
+                    </Button>
+                  </a>
+                ))}
+              </div>
+            </div>
           </div>
-        </div>
-        <div>
-          <h1 className="font-black font-title text-2xl my-4">
-            Google Drive Link
-          </h1>
-          <div className="flex gap-3">
-            <Link
-              target="_blank"
-              to="https://drive.google.com/drive/folders/0B9BrgG25s1_BOGY1YmViNWQtYWY4ZS00NWUzLWFkYjYtM2RkNmQ5YjMwNzQx?resourcekey=0-mP3vH6iaqMwhXj1EL1E0fg"
-            >
-              <Button className="bg-green-400">assignment Link</Button>
-            </Link>
-            <Link
-              target="_blank"
-              to="https://drive.google.com/drive/folders/0B9BrgG25s1_BOGY1YmViNWQtYWY4ZS00NWUzLWFkYjYtM2RkNmQ5YjMwNzQx?resourcekey=0-mP3vH6iaqMwhXj1EL1E0fg"
-            >
-              <Button className="bg-green-400">assignment Link</Button>
-            </Link>
-            <Link
-              target="_blank"
-              to="https://drive.google.com/drive/folders/0B9BrgG25s1_BOGY1YmViNWQtYWY4ZS00NWUzLWFkYjYtM2RkNmQ5YjMwNzQx?resourcekey=0-mP3vH6iaqMwhXj1EL1E0fg"
-            >
-              <Button className="bg-green-400">assignment Link</Button>
-            </Link>
-            <Link
-              target="_blank"
-              to="https://drive.google.com/drive/folders/0B9BrgG25s1_BOGY1YmViNWQtYWY4ZS00NWUzLWFkYjYtM2RkNmQ5YjMwNzQx?resourcekey=0-mP3vH6iaqMwhXj1EL1E0fg"
-            >
-              <Button className="bg-green-400">assignment Link</Button>
-            </Link>
-            <Link
-              target="_blank"
-              to="https://drive.google.com/drive/folders/0B9BrgG25s1_BOGY1YmViNWQtYWY4ZS00NWUzLWFkYjYtM2RkNmQ5YjMwNzQx?resourcekey=0-mP3vH6iaqMwhXj1EL1E0fg"
-            >
-              <Button className="bg-green-400">assignment Link</Button>
-            </Link>
-          </div>
-        </div>
+        ))}
       </div>
     </div>
   );

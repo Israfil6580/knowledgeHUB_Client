@@ -1,14 +1,14 @@
+/* eslint-disable react/prop-types */
 import {
   Button,
   Dialog,
   DialogBody,
   DialogFooter,
-  Typography,
   Card,
 } from "@material-tailwind/react";
 import { useState } from "react";
 
-export function DialogWithImage() {
+export function DialogWithImage({ item }) {
   const [open, setOpen] = useState(false);
 
   const handleOpen = () => setOpen((cur) => !cur);
@@ -21,8 +21,8 @@ export function DialogWithImage() {
       >
         <img
           alt="nature"
-          className="h-full w-full object-cover object-center"
-          src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2717&q=80"
+          className="h-60 w-full object-cover object-center"
+          src={item}
         />
       </Card>
       <Dialog size="xl" open={open} handler={handleOpen}>
@@ -30,35 +30,19 @@ export function DialogWithImage() {
           <img
             alt="nature"
             className="lg:h-[45rem] w-full rounded-lg object-cover object-center"
-            src="https://images.unsplash.com/photo-1485470733090-0aae1788d5af?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=2717&q=80"
+            src={item}
           />
         </DialogBody>
         <DialogFooter className="justify-between pt-0">
-          <div className="flex items-center gap-16">
-            <div>
-              <Typography variant="small" color="gray" className="font-normal">
-                Views
-              </Typography>
-              <Typography color="blue-gray" className="font-bold">
-                44,082,044
-              </Typography>
-            </div>
-            <div>
-              <Typography variant="small" color="gray" className="font-normal">
-                Downloads
-              </Typography>
-              <Typography color="blue-gray" className="font-bold">
-                553,031
-              </Typography>
-            </div>
-          </div>
           <div className="flex items-center gap-2">
-            <Button
-              className="font-normal capitalize text-[15px] tracking-wide"
-              color="gray"
-            >
-              Download
-            </Button>
+            <a href={item} target="_blank" download>
+              <Button
+                className="font-normal capitalize text-[15px] tracking-wide"
+                color="gray"
+              >
+                Download
+              </Button>
+            </a>
           </div>
         </DialogFooter>
       </Dialog>

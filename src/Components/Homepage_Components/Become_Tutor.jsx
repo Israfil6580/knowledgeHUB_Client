@@ -1,7 +1,5 @@
-import { Button } from "@material-tailwind/react";
 import BecomeTutorimg from "/BecomeTutor.png";
 import circle from "/circle.png";
-import { Link } from "react-router-dom";
 import Container from "../Public_Components/Container";
 const Become_Tutor = () => {
   return (
@@ -99,11 +97,6 @@ const Become_Tutor = () => {
                 Networking Opportunities
               </li>
             </ul>
-          </div>
-          <div className="mt-10">
-            <Button className="capitalize font-normal text-[15px]">
-              <Link>Become a Tutor</Link>
-            </Button>
           </div>
         </div>
         <div className="lg:w-5/12 lg:mt-0 mt-16">

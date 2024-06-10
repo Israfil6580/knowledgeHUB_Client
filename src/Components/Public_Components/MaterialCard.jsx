@@ -1,19 +1,13 @@
+/* eslint-disable react/prop-types */
 import { Button } from "@material-tailwind/react";
 import { Link } from "react-router-dom";
 
-const MaterialCard = () => {
+const MaterialCard = ({ item }) => {
   return (
     <div className="w-auto bg-white border relative pt-14 pb-6 px-10 rounded-2xl">
-      <div className="absolute -top-10">
-        <img
-          className="h-20 w-20 object-cover rounded-full border-4"
-          src="https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg"
-          alt=""
-        />
-      </div>
       <div className="flex flex-col gap-2">
         <h2 className="font-black tracking-wide font-title text-xl">
-          App Developement
+          {item.sessionTitle}
         </h2>
         <div className="flex flex-col gap-1">
           <p className="flex gap-2 text-gray-700 items-center">
@@ -29,28 +23,27 @@ const MaterialCard = () => {
                 clipRule="evenodd"
               />
             </svg>
-            Internal Communication
+            {item.SessionType}
           </p>
           <p className="flex gap-2 text-gray-700 items-center">
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              fill="none"
               viewBox="0 0 24 24"
-              strokeWidth="1.5"
-              stroke="currentColor"
+              fill="currentColor"
               className="size-6"
             >
               <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                d="M12 6v6h4.5m4.5 0a9 9 0 1 1-18 0 9 9 0 0 1 18 0Z"
+                fillRule="evenodd"
+                d="M7.5 6a4.5 4.5 0 1 1 9 0 4.5 4.5 0 0 1-9 0ZM3.751 20.105a8.25 8.25 0 0 1 16.498 0 .75.75 0 0 1-.437.695A18.683 18.683 0 0 1 12 22.5c-2.786 0-5.433-.608-7.812-1.7a.75.75 0 0 1-.437-.695Z"
+                clipRule="evenodd"
               />
             </svg>
-            1 weaks left
+
+            {item.TutorName}
           </p>
         </div>
         <hr />
-        <Link to={"/Dashboard/seeMaterials"}>
+        <Link to={`/Dashboard/seeMaterials/${item.sessionId}`}>
           <Button className="font-normal text-[15px] capitalize w-full">
             see resources
           </Button>

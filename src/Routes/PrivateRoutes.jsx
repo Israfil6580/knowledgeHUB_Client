@@ -1,14 +1,15 @@
 import { Navigate, useLocation } from "react-router";
 import useAuth from "../Hooks/useAuth";
-import PropTypes from "prop-types"
+import PropTypes from "prop-types";
 import { RotatingLines } from "react-loader-spinner";
 
 const PrivateRoute = ({ children }) => {
-    const { user, loading } = useAuth();
-    const location = useLocation();
+  const { user, loading } = useAuth();
+  const location = useLocation();
 
-    if(loading){
-        return(<div className="min-h-screen flex justify-center items-center">
+  if (loading) {
+    return (
+      <div className="min-h-screen flex justify-center items-center">
         <RotatingLines
           visible={true}
           height="96"
@@ -20,17 +21,18 @@ const PrivateRoute = ({ children }) => {
           wrapperStyle={{}}
           wrapperClass=""
         />
-      </div>)
-    }
+      </div>
+    );
+  }
 
-    if (user) {
-        return children;
-    }
-    return <Navigate to="/login" state={{from: location}} replace></Navigate>
+  if (user) {
+    return children;
+  }
+  return <Navigate to="/login" state={location.pathname} replace={true} />;
 };
 
 PrivateRoute.propTypes = {
-    children : PropTypes.node
-}
+  children: PropTypes.node,
+};
 
 export default PrivateRoute;

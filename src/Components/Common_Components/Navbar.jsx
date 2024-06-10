@@ -33,16 +33,6 @@ function NavList() {
           Dashboard
         </NavLink>
       </Typography>
-      <Typography as="a" href="#" variant="small" color="blue-gray">
-        <ListItem className="flex items-center gap-2 py-2 pr-4 font-normal">
-          Be A Tutor
-        </ListItem>
-      </Typography>
-      <Typography as="a" href="#" variant="small" color="blue-gray">
-        <ListItem className="flex items-center gap-2 py-2 pr-4 font-normal">
-          My Classes
-        </ListItem>
-      </Typography>
     </List>
   );
 }

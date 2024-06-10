@@ -1,5 +1,10 @@
 import { Button } from "@material-tailwind/react";
-import { Link, ScrollRestoration } from "react-router-dom";
+import {
+  Link,
+  ScrollRestoration,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 import logo from "/fav.svg";
 import useAuth from "../Hooks/useAuth";
 import { useForm } from "react-hook-form";
@@ -10,17 +15,30 @@ import toast from "react-hot-toast";
 const Login = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { signIn, googleSignIn, githubSignIn, loading } = useAuth();
+  const navigate = useNavigate();
+  const location = useLocation();
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
+  const handleGoodleSubmit = async () => {
+    await googleSignIn();
+    return navigate(location.state || "/", { replace: true });
+  };
+
+  const handleGithubSubmit = async () => {
+    await githubSignIn();
+    return navigate(location.state || "/", { replace: true });
+  };
+
   const onSubmit = async (data) => {
     setIsSubmitting(true);
     try {
       await signIn(data.email, data.password);
       toast.success("You've successfully signed in.");
+      return navigate(location.state || "/", { replace: true });
     } catch (error) {
       toast.error("Oops! Incorrect email or password.");
     } finally {
@@ -62,7 +80,7 @@ const Login = () => {
         </p>
         <div className="my-6 space-y-4">
           <Button
-            onClick={googleSignIn}
+            onClick={handleGoodleSubmit}
             aria-label="Login with Google"
             type="button"
             className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md bg-gray-900"
@@ -82,7 +100,7 @@ const Login = () => {
             aria-label="Login with GitHub"
             role="button"
             className="flex items-center justify-center w-full p-4 space-x-4 border rounded-md bg-gray-900"
-            onClick={githubSignIn}
+            onClick={handleGithubSubmit}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"

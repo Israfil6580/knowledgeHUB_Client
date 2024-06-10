@@ -50,12 +50,26 @@ const Dashboard = () => {
                 </h1>
                 {/* Conditional navigation based on user role */}
                 {isAdmin && (
-                  <NavLink
-                    to="/dashboard/viewallusers"
-                    className="w-full text-left font-normal text-base normal-case flex gap-1 items-center"
-                  >
-                    View All Users
-                  </NavLink>
+                  <>
+                    <NavLink
+                      to="/dashboard/viewallusers"
+                      className="w-full text-left font-normal text-base normal-case flex gap-1 items-center"
+                    >
+                      View All Users
+                    </NavLink>
+                    <NavLink
+                      to="/dashboard/viewallSession"
+                      className="w-full text-left font-normal text-base normal-case flex gap-1 items-center"
+                    >
+                      View All Session
+                    </NavLink>
+                    <NavLink
+                      to="/dashboard/ViewallMaterials"
+                      className="w-full text-left font-normal text-base normal-case flex gap-1 items-center"
+                    >
+                      View All Materials
+                    </NavLink>
+                  </>
                 )}
                 {isTutor && (
                   <>

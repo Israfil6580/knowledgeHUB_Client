@@ -4,17 +4,25 @@ import {
   TabsBody,
   Tab,
   TabPanel,
+  Card,
+  CardBody,
+  Typography,
+  CardFooter,
+  Button,
 } from "@material-tailwind/react";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
 import useAuth from "../../Hooks/useAuth";
+import toast from "react-hot-toast";
+
 const AllMySession = () => {
-  const [activeTab, setActiveTab] = useState("approved");
-  const { user } = useAuth();
   const axiosSecure = useAxiosSecure();
-  const { data: ApprovedSession = [], refetch } = useQuery({
+  const { user } = useAuth();
+  const [activeTab, setActiveTab] = useState("approved");
+
+  const { data: ApprovedSession, refetch: refetchApproved } = useQuery({
     queryKey: ["approved session"],
     queryFn: async () => {
       try {
@@ -23,12 +31,13 @@ const AllMySession = () => {
         );
         return res.data;
       } catch (error) {
-        console.error("Error fetching session:", error);
-        throw new Error("Failed to fetch session");
+        console.error("Error fetching approved sessions:", error);
+        throw new Error("Failed to fetch approved sessions");
       }
     },
   });
-  const { data: PendingSession = [] } = useQuery({
+
+  const { data: PendingSession, refetch: refetchPending } = useQuery({
     queryKey: ["pending session"],
     queryFn: async () => {
       try {
@@ -37,12 +46,13 @@ const AllMySession = () => {
         );
         return res.data;
       } catch (error) {
-        console.error("Error fetching session:", error);
-        throw new Error("Failed to fetch session");
+        console.error("Error fetching pending sessions:", error);
+        throw new Error("Failed to fetch pending sessions");
       }
     },
   });
-  const { data: RejectedSession = [] } = useQuery({
+
+  const { data: RejectedSession, refetch: refetchRejected } = useQuery({
     queryKey: ["rejected session"],
     queryFn: async () => {
       try {
@@ -51,31 +61,47 @@ const AllMySession = () => {
         );
         return res.data;
       } catch (error) {
-        console.error("Error fetching session:", error);
-        throw new Error("Failed to fetch session");
+        console.error("Error fetching rejected sessions:", error);
+        throw new Error("Failed to fetch rejected sessions");
       }
     },
   });
+
+  useEffect(() => {
+    refetchApproved();
+    refetchPending();
+    refetchRejected();
+  }, [refetchApproved, refetchPending, refetchRejected]);
+
+  const AgainRequest = async (id) => {
+    try {
+      await axiosSecure.put(`/Created_Session/New_Request/${id}`, {
+        Status: "Pending",
+      });
+      toast.success("Request Successful");
+    } catch (error) {
+      console.error("Error updating session status:", error);
+    }
+  };
+
   const data = [
     {
       label: "Approved",
       value: "approved",
-      desc: ApprovedSession,
-      refetch,
+      desc: ApprovedSession || [],
     },
     {
       label: "Rejected",
       value: "rejected",
-      desc: RejectedSession,
-      refetch,
+      desc: RejectedSession || [],
     },
     {
       label: "Pending",
       value: "pending",
-      desc: PendingSession,
-      refetch,
+      desc: PendingSession || [],
     },
   ];
+
   return (
     <div className="bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] rounded-2xl min-h-[calc(100vh-150px)] mt-2 p-6">
       <div>
@@ -102,10 +128,37 @@ const AllMySession = () => {
         </TabsHeader>
         <TabsBody>
           {data.map(({ value, desc }) => (
-            <TabPanel key={value} value={value}>
-              {desc.map((item, index) => {
-                return <h1 key={index}>{item.sessionTitle}</h1>;
-              })}
+            <TabPanel
+              className="grid grid-cols-2 gap-4"
+              key={value}
+              value={value}
+            >
+              {desc.map((item, index) => (
+                <Card key={index} className="mt-6 w-auto">
+                  <CardBody>
+                    <Typography variant="h5" color="blue-gray" className="mb-2">
+                      {item.sessionTitle}
+                    </Typography>
+                    <Typography>{item.sessionDescription}</Typography>
+                  </CardBody>
+                  <CardFooter className="pt-0 flex justify-between">
+                    <Button
+                      className="text-[15px] font-normal capitalize"
+                      disabled
+                    >
+                      {item.Status}
+                    </Button>
+                    {item.Status === "Rejected" && (
+                      <Button
+                        onClick={() => AgainRequest(item._id)}
+                        className="text-[15px] font-normal capitalize"
+                      >
+                        Request
+                      </Button>
+                    )}
+                  </CardFooter>
+                </Card>
+              ))}
             </TabPanel>
           ))}
         </TabsBody>

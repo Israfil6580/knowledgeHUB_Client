@@ -156,6 +156,7 @@ const UploadCard = ({ ApprovedSession }) => {
                     <h1 className="font-title text-3xl font-black text-gray-900">
                       Upload Materials
                     </h1>
+                    <p>It takes saveral time to upload</p>
                   </div>
                   <div className="grid gap-6">
                     <Input
