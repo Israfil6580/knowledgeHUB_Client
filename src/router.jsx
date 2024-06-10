@@ -21,11 +21,13 @@ import ViewAllSession from "./Components/Homepage_Components/ViewAllSession";
 import All_Tutors from "./Components/Homepage_Components/AllTutor";
 import AllStudySession from "./Components/Dashboard_Components/AllStudySession";
 import AllMaterials from "./Components/Dashboard_Components/AllMaterials";
+import Errorpage from "./pages/Errorpage";
 
 export const router = createBrowserRouter([
   {
     path: "/",
     element: <Layout />,
+    errorElement: <Errorpage />,
     children: [
       {
         index: true,

@@ -15,10 +15,6 @@ const SITEMAP = [
     title: "Resources",
     links: ["Blog", "Newsletter", "Free Products", "Affiliate Program"],
   },
-  {
-    title: "Products",
-    links: ["Templates", "UI Kits", "Icons", "Mockups"],
-  },
 ];
 
 const currentYear = new Date().getFullYear();
@@ -27,7 +23,7 @@ export function Footer() {
   return (
     <div className="mt-10">
       <Container>
-        <div className="mx-auto grid w-full grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-4">
+        <div className="mx-auto grid w-full grid-cols-1 gap-8 py-12 md:grid-cols-2 lg:grid-cols-3">
           {SITEMAP.map(({ title, links }, key) => (
             <div key={key} className="w-full">
               <Typography
@@ -63,7 +59,7 @@ export function Footer() {
             className="mb-4 text-center font-normal text-blue-gray-900 md:mb-0"
           >
             &copy; {currentYear}{" "}
-            <Link href="https://material-tailwind.com/">Material Tailwind</Link>. All
+            <Link href="https://material-tailwind.com/">KnowledgeHUB</Link>. All
             Rights Reserved.
           </Typography>
           <div className="flex gap-4 text-blue-gray-900 sm:justify-center">
