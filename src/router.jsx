@@ -52,7 +52,11 @@ export const router = createBrowserRouter([
       { path: "allTutor", element: <All_Tutors /> },
       {
         path: "all_Study_Session",
-        element: <ViewAllSession />,
+        element: (
+          <PrivateRoute>
+            <ViewAllSession />
+          </PrivateRoute>
+        ),
       },
     ],
   },
