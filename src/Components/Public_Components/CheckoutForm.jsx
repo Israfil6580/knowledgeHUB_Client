@@ -43,6 +43,7 @@ const CheckoutForm = ({ handleOpen, session }) => {
       ...session,
       TutorEmail: user.email,
       transactionId: "free-session",
+      sessionId: session._id,
       date: new Date(),
     };
     delete paymentInfo._id;

@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Popover,
   PopoverContent,
@@ -5,16 +6,16 @@ import {
   Typography,
 } from "@material-tailwind/react";
 
-const NoteCard = () => {
+const NoteCard = ({ title, content }) => {
   return (
     <Popover>
       <PopoverHandler>
-        <div className="bg-white p-4 rounded-2xl cursor-pointer hover:bg-gray-300 transition-transform group relative">
+        <div className="bg-white p-4 py-10 rounded-2xl cursor-pointer hover:bg-gray-300 transition-transform group relative">
+          <p className="text-[15px] font-bold text-xl pb-4">
+            {title.split(" ").splice(0, 4).join(" ")}
+          </p>
           <p className="text-[15px]">
-            Lorem ipsum dolor sit amet consectetur adipisicing elit. Iusto
-            doloremque deleniti accusamus nemo magnam soluta eligendi odit
-            officia exercitationem, in impedit sapiente saepe? Vero a enim
-            dolorem nesciunt doloribus amet?
+            {content.split(" ").splice(0, 20).join(" ")}...
           </p>
           <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 hidden group-hover:block">
             <svg
@@ -23,7 +24,7 @@ const NoteCard = () => {
               viewBox="0 0 24 24"
               strokeWidth="1.5"
               stroke="currentColor"
-              className="size-40"
+              className="size-20"
             >
               <path
                 strokeLinecap="round"
@@ -43,22 +44,15 @@ const NoteCard = () => {
         <div className="p-4">
           <Typography
             color="gray"
+            className="mb-5 text-2xl font-bold text-blue-gray-700 w-full"
+          >
+            {title}
+          </Typography>
+          <Typography
+            color="gray"
             className="mb-5 font-normal text-blue-gray-700 w-full"
           >
-            Material Tailwind is an easy to use components library for Tailwind
-            CSS and Material Design. It features multiple React and HTML
-            components, all written with Tailwind CSS classes and Material
-            Design guidelines. Lorem ipsum dolor sit amet consectetur
-            adipisicing elit. Sed iure id ad nihil itaque suscipit magni magnam
-            possimus quidem eligendi facere praesentium sunt rerum inventore
-            deleniti, illo reiciendis ipsum accusamus eum placeat maiores nobis
-            veniam optio? Hic dolorum tempora, a assumenda laudantium in ducimus
-            dolorem voluptatem alias dicta. Ex provident consequatur eius
-            assumenda pariatur inventore tempora aperiam, nisi laudantium,
-            incidunt, numquam dicta suscipit consectetur. Odit, aut quidem ipsum
-            omnis beatae illo similique molestias. Temporibus libero provident
-            debitis, veritatis quas tempore in commodi iste ratione alias eius
-            sit.
+            {content}
           </Typography>
         </div>
       </PopoverContent>

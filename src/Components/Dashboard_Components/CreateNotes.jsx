@@ -1,10 +1,46 @@
 import { Button, Dialog } from "@material-tailwind/react";
 import NoteCard from "../Public_Components/NoteCard";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useAuth from "../../Hooks/useAuth";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 const CreateNotes = () => {
   const [open, setOpen] = useState(false);
+  const [notes, setNotes] = useState([]);
+  const { user } = useAuth();
+  const [email, setEmail] = useState(user?.email);
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
+  const axiosSecure = useAxiosSecure();
   const handleOpen = () => setOpen((cur) => !cur);
+
+  const fetchNotes = async () => {
+    try {
+      const response = await axiosSecure.get(`/notes/${email}`);
+      setNotes(response.data);
+    } catch (error) {
+      console.error("Error fetching notes:", error);
+    }
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    const newNote = { email, title, content };
+    try {
+      await axiosSecure.post("/notes", newNote);
+      setTitle("");
+      setContent("");
+      fetchNotes();
+      handleOpen();
+    } catch (error) {
+      console.error("Error creating note:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchNotes();
+  }, []);
+
   return (
     <div className="bg-gradient-to-r from-[#fdfbfb] to-[#ebedee] rounded-2xl min-h-[calc(100vh-150px)] mt-2 p-6">
       <div className="flex justify-between">
@@ -37,16 +73,17 @@ const CreateNotes = () => {
           handler={handleOpen}
           className="bg-transparent shadow-none"
         >
-          <div className="relative bg-white p-10 rounded-2xl flex gap-4 flex-col">
+          <form
+            onSubmit={handleSubmit}
+            className="relative bg-white p-10 rounded-2xl flex gap-4 flex-col"
+          >
             <div>
               <label>User Email</label>
               <input
                 className="py-2 px-1 w-full rounded-lg outline-none border-2 border-gray-300 text-black text-[15px]"
                 type="text"
-                defaultValue={`israfilhossainmilon@gmail.com ${"(read only)"}`}
-                disabled
-                name=""
-                id=""
+                value={email}
+                readOnly
               />
             </div>
             <div>
@@ -55,8 +92,9 @@ const CreateNotes = () => {
                 className="py-2 px-1 w-full rounded-lg outline-none border-2 border-gray-300 text-black text-[15px]"
                 type="text"
                 placeholder="Write note title"
-                name=""
-                id=""
+                value={title}
+                onChange={(e) => setTitle(e.target.value)}
+                required
               />
             </div>
             <div className="relative w-full min-w-[200px] flex flex-col">
@@ -64,21 +102,31 @@ const CreateNotes = () => {
               <textarea
                 className="border-gray-300 border-2 w-full outline-none rounded-xl p-3 text-black text-[15px]"
                 rows="8"
-                placeholder=" Write your notes "
+                placeholder="Write your notes"
+                value={content}
+                onChange={(e) => setContent(e.target.value)}
+                required
               ></textarea>
             </div>
             <div className="flex gap-2 w-full justify-end py-1.5">
-              <Button className="text-[15px] capitalize font-normal">
+              <Button
+                type="submit"
+                className="text-[15px] capitalize font-normal"
+              >
                 Add Note
               </Button>
             </div>
-          </div>
+          </form>
         </Dialog>
       </div>
       <div className="grid grid-cols-3 gap-3 pt-6">
-        <NoteCard />
-        <NoteCard />
-        <NoteCard />
+        {notes.map((notes) => (
+          <NoteCard
+            key={notes._id}
+            title={notes.title}
+            content={notes.content}
+          />
+        ))}
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import { Link } from "react-router-dom";
 
 export function CardDefault({ item }) {
   const isRegistrationOver = new Date(item.RegEndDate) < new Date();
+
   return (
     <Card className="mt-6 w-96">
       <CardBody>

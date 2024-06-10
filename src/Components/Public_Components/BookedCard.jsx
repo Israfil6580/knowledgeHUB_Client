@@ -5,13 +5,6 @@ import { Link } from "react-router-dom";
 const BookedCard = ({ bookings }) => {
   return (
     <div className="w-auto bg-white border relative pt-14 pb-6 px-10 rounded-2xl">
-      <div className="absolute -top-10">
-        <img
-          className="h-20 w-20 object-cover rounded-full border-4"
-          src="https://cdn.britannica.com/55/174255-050-526314B6/brown-Guernsey-cow.jpg"
-          alt=""
-        />
-      </div>
       <div className="flex flex-col gap-2">
         <h2 className="font-black tracking-wide font-title text-xl">
           {bookings.sessionTitle}

@@ -126,11 +126,7 @@ const SingleMaterialsCard = ({ item }) => {
         GoogleDriveLinks: linkUrls,
       };
 
-      const a = await axiosSecure.patch(
-        `/Study-Material/${item._id}`,
-        updatedInfo
-      );
-      console.log(a);
+      await axiosSecure.patch(`/Study-Material/${item._id}`, updatedInfo);
       toast.success("Success! You've successfully updated the resources");
 
       handleCloseDialog();
