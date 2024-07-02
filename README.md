@@ -1,12 +1,11 @@
-#### Website URL
-### [Knowledge HUB](https://euphonious-centaur-a9c57b.netlify.app/)
+#### Website URL - [Knowledge HUB](https://euphonious-centaur-a9c57b.netlify.app/)
 
 ### Features
 - Clean and Modern Design: Visually appealing layout with intuitive navigation.
 - Latest Technology Insights: Up-to-date information on emerging technologies and trends.
 - Multimedia Content: Videos and images to enhance learning.
 
-## Technology Used : Html, Css, Javascript, React, Axios, Npm, packages, Firebase, tailwind Css
+## Technology Used - Html, Css, Javascript, React, Axios, Npm, packages, Firebase, tailwind Css
 
 ## You Can Run This Project On Your Local Machine
 ### Installation
