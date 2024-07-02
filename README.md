@@ -1,19 +1,17 @@
-- Knowledge HUB 
-- Welcome to Knowledge HUB, a modern educational platform offering a wealth of resources and insights. Explore a variety of tutorials, articles, and interactive content designed to enhance your learning experience.
-
-Website URL
+#### Website URL
 [Knowledge HUB](https://euphonious-centaur-a9c57b.netlify.app/)
 
-Features
+### Features
 - Clean and Modern Design: Visually appealing layout with intuitive navigation.
-- Comprehensive Learning Resources: Tutorials and articles covering a variety of topics.
-- Responsive Layout: Seamless experience on desktops, tablets, and smartphones.
-- Dark Mode Option: Comfortable viewing in low-light conditions.
-- Interactive Elements: Engaging quizzes and interactive tutorials.
-- User-Friendly Interface: Clear structure and well-organized content.
 - Latest Technology Insights: Up-to-date information on emerging technologies and trends.
-- Community Engagement: Sections for user comments and discussions.
 - Multimedia Content: Videos and images to enhance learning.
-- Regular Updates: Frequently updated with new content.
-- Explore Knowledge HUB
-- Dive into our extensive library of resources and stay updated with the latest trends in technology and education.
+
+## Technology Used : Html, Css, Javascript, React, Axios, Npm, packages, Firebase
+
+## You Can Run This Project On Your Local Machine
+### Installation
+- Clone the repository: `git clone <repository_url>`
+- Navigate into the project directory: `cd <project_folder>`
+- Then install dependencies: `npm install`
+#### Running the Application
+To start the application, run `npm start` and navigate to `http://localhost:3000` in your browser.
